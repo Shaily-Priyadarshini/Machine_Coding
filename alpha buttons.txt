@@ -1,0 +1,27 @@
+
+import { useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [value, setValue] = useState("");
+  function handleClick(e) {
+    setValue(value + e.target.textContent);
+  }
+
+  return (
+    <div className="App">
+      {Array.from({ length: 26 }, (e, i) => String.fromCharCode(i + 65)).map(
+        (letter) => (
+          <Button key={letter} letters={letter} handleClick={handleClick} />
+        )
+      )}
+      <StringPrint value={value} />
+    </div>
+  );
+}
+function Button({ letters, handleClick }) {
+  return <button onClick={(e) => handleClick(e)}>{letters}</button>;
+}
+function StringPrint({ value }) {
+  return <p>{value}</p>;
+}
